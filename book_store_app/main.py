@@ -11,6 +11,7 @@ Enter Choice: """
 
 
 def menu():
+    database.create_book_table()
     user_input = input(USER_CHOICE)
     while user_input != 'q':
         if user_input == 'a':
@@ -31,13 +32,14 @@ def prompt_add_book():
     name = input("Enter the new book name: ")
     author = input("Enter the new book author: ")
     database.add_book(name, author)
+    print("Added a new Book")
 
 
 def list_book():
     books = database.get_all_books()
     for book in books:
-        read = 'YES' if book['read'] == '1' else 'NO'
-        print(f"{book['name']} by {book['author']}, read: {book['read']}")
+        read = 'YES' if book['read'] == 1 else 'NO'
+        print(f"{book['name']} by {book['author']}, read: {read}")
 
 
 def prompt_read_book():
